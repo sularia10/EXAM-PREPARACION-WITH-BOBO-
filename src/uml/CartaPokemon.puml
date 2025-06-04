@@ -1,0 +1,17 @@
+@startuml
+
+class CartaPokemon{
+--atributs--
+-nom: String
+-tipus: String
+-foc: int
+-planta : int
+--methodes--
++getNom():String
++comprarPoder(altre: CartaPokemon): int
++poderTotal(puntacion): int
+}
+
+
+
+@enduml
