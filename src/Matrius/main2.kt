@@ -71,15 +71,26 @@ fun main(){
                     println("${matriu[0][x]} : ${matriu[position][x]}")
                 }
             }
-            3->{
-                println("Introduiex una assignatura (Mat, Cat, Hist, Ang, Qui, EF, Bio, Fís, Fil, Tec): ")
-                val assig = scanner.nextLine()
-                var position= matriu.indexOfFirst {it.equals(assig)}
+            3 -> {
+                println("Introdueix una assignatura (ex: Mat, Cat, Ang):")
+                val assignatura = scanner.nextLine()
+                println("L'assignatura $assignatura es fa a:")
 
-                for (x in 0..5){
+                var trobat = false
+                for (i in 1 until matriu.size) {         // Filas (horas)
+                    for (j in 1 until matriu[0].size) {  // Columnas (días)
+                        if (matriu[i][j].equals(assignatura, ignoreCase = true)) {
+                            println("${matriu[0][j]} a les ${matriu[i][0]}")
+                            trobat = true
+                        }
+                    }
+                }
 
+                if (!trobat) {
+                    println("No s'ha trobat l'assignatura.")
                 }
             }
+
             4->{valid = true}
         }
     }while (!valid)
