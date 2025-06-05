@@ -64,14 +64,22 @@ fun main(){
             2->{
                 println("Indrodueix uan franja horària (8:00-10:00, 10:00-12:00, 12:00-14:00, 14:00-16:00): ")
                 val day = scanner.nextLine()
-                var position= matriu.indexOfFirst {it.equals(day)}
+                var position= matriu.indexOfFirst {it[0] == day}
 
 
                 for (x in 1..matriu.size){
                     println("${matriu[0][x]} : ${matriu[position][x]}")
                 }
             }
-            3->{}
+            3->{
+                println("Introduiex una assignatura (Mat, Cat, Hist, Ang, Qui, EF, Bio, Fís, Fil, Tec): ")
+                val assig = scanner.nextLine()
+                var position= matriu.indexOfFirst {it.equals(assig)}
+
+                for (x in 0..5){
+
+                }
+            }
             4->{valid = true}
         }
     }while (!valid)
