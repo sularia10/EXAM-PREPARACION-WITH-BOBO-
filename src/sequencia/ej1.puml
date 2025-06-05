@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Entrenador
+actor Jugador
+
+boundary UI
+control Controlador
+entity DB
+
+== Afegir Jugador ==
+
+Entrenador -> UI : introdueix dades del jugador
+UI -> Controlador : sol·licita afegir jugador
+Controlador -> DB : insereix jugador a la DB
+DB -> Controlador : confirma inserció
+Controlador -> UI : mostra confirmació
+UI -> Entrenador : jugador afegit correctament
+
+newpage
+
+== Marcar Gol ==
+
+Jugador -> UI : marcar gol
+UI -> Controlador : sol·licita registrar gol
+Controlador -> DB : actualitza gols del jugador
+DB -> Controlador : confirma actualització
+Controlador -> UI : mostra confirmació
+UI -> Jugador : gol registrat amb èxit
+
+newpage
+
+== Fer Assistència ==
+
+Jugador -> UI : fer assistència
+UI -> Controlador : sol·licita registrar assistència
+Controlador -> DB : actualitza assistències del jugador
+DB -> Controlador : confirma actualització
+Controlador -> UI : mostra confirmació
+UI -> Jugador : assistència registrada
+
+
+
+== Sumar Punts a l'Equip ==
+
+Entrenador -> UI : sumar punts a l’equip
+UI -> Controlador : sol·licita sumar punts
+Controlador -> DB : actualitza punts de l’equip
+DB -> Controlador : confirma actualització
+Controlador -> UI : mostra confirmació
+UI -> Entrenador : punts sumats correctament
+
+@enduml

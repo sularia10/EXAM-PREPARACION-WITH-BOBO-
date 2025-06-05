@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+actor Entrenador
+actor Jugador
+
+rectangle "Sistema de Gestió d'Equip" {
+  usecase "Afegir Jugador a l'Equip" as UC1
+  usecase "Sumar Punts a l'Equip" as UC2
+  usecase "Marcar Gol" as UC3
+  usecase "Fer Assistència" as UC4
+}
+
+Entrenador --> UC1
+Entrenador --> UC2
+Jugador --> UC3
+Jugador --> UC4
+@enduml

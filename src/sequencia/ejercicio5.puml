@@ -1,0 +1,64 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor Cliente
+actor Cocinero
+actor Repartidor
+
+boundary UI
+control Controlador
+entity DB
+
+Cliente -> UI : selecciona platos
+UI -> Controlador : solicita platos
+Controlador -> DB : consulta platos
+
+DB -> Controlador : retorna platos
+Controlador -> UI : muestra platos
+UI -> Cliente : confirma platos
+
+Cliente -> UI : hace pedido
+UI -> Controlador : solicita pedido
+Controlador -> DB : añade pedido a la DB
+
+alt Añadir propina
+  Cliente -> UI : añadir propina
+  UI -> Controlador : solicita añadir propina al pedido
+  Controlador -> DB : actualiza el pedido con propina
+  Controlador -> DB : confirma pedido
+  DB -> Controlador : confirma el pedido registrado
+  Controlador -> UI : muestra confirmación del pedido
+  UI-> Cliente :  muestra confirmación del pedido al cliente
+end
+
+newpage
+
+Cocinero -> UI : ver pedidos pendientes
+UI -> Controlador : solicita pedidos pendientes
+Controlador -> DB : consulta pedidos pendientes
+
+DB -> Controlador : retorna pedidos pendientes
+Controlador -> UI : muestra pedidos pendientes
+UI -> Cocinero : muestra pedidos pendientes
+
+newpage
+
+Repartidor -> UI : solicita entrega de pedido
+UI -> Controlador : solicita pedido
+Controlador -> DB : consulta entrega de pedido
+DB -> Controlador : retorna pedido para entregar
+Controlador -> UI : muestra pedido para entregar
+UI -> Repartidor : muestra pedido para entregar
+
+newpage
+
+Repartidor -> UI : notifica entrega
+UI -> Controlador : solicita notificación de entrega
+Controlador -> DB : actualiza pedido como entregado
+DB -> Controlador : confirma actualización
+Controlador -> UI : muestra confirmación de entrega
+UI -> Repartidor : muestra confirmación de entrega
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+
+left to right direction
+
+actor Client
+actor Cuiner
+actor Repartidor
+
+rectangle "Sistema de Comandes en un Restaurant" {
+
+  (Seleccionar plats) as Seleccio
+  (Fer comanda) as Comanda
+  (Pagar) as Pagament
+  (Afegir propina) as Propina
+  (Veure comandes pendents) as Veure
+  (Preparar menjar) as Preparar
+  (Lliurar comandes) as Lliurar
+  (Notificar entrega) as Notificar
+
+  ' Casos d'ús del Client
+  Client --> Seleccio
+  Seleccio --> Comanda : <<include>>
+  Comanda --> Pagament : <<include>>
+  Pagament --> Propina : <<extend>>
+
+  ' Casos d'ús del Cuiner
+  Cuiner --> Veure
+  Veure --> Preparar : <<include>>
+
+  ' Casos d'ús del Repartidor
+  Repartidor --> Lliurar
+  Repartidor --> Notificar
+}
+
+@enduml

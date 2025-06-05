@@ -1,0 +1,60 @@
+@startuml
+
+' Enumeració per al nivell de l'usuari
+enum Nivell {
+  PRINCIPIANT
+  INTERMEDI
+  AVANÇAT
+}
+
+' Classe Exercici
+class Exercici {
+  - nom: String
+  - grupMuscular: String
+  - repeticions: int
+  - pes: float
+
+  + modificarRepeticions(novesReps: int): void
+  + modificarPes(nouPes: float): void
+}
+
+' Classe Rutina
+class Rutina {
+  - nom: String
+  - exercicis: List<Exercici>
+  - duradaTotal: int
+
+  + afegirExercici(e: Exercici): void
+  + eliminarExercici(e: Exercici): void
+  + calcularDuradaTotal(): int
+}
+
+' Classe ActivitatGimnàs
+class ActivitatGimnas {
+  - nom: String
+  - monitor: String
+  - capacitatMaxima: int
+  - horari: String
+  - usuarisInscrits: List<UsuariGimnas>
+
+  + registrarInscripcio(usuari: UsuariGimnas): boolean
+  + hiHaPlacesDisponibles(): boolean
+}
+
+' Classe UsuariGimnàs
+class UsuariGimnas {
+  - nom: String
+  - edat: int
+  - nivell: Nivell
+  - rutinaAssignada: Rutina
+
+  + assignarRutina(r: Rutina): void
+  + apuntarActivitat(a: ActivitatGimnas): boolean
+}
+
+' Relacions entre classes
+UsuariGimnas --> Rutina : "1 rutina"
+Rutina --> Exercici : "múltiples exercicis"
+ActivitatGimnas --> UsuariGimnas : "múltiples inscrits"
+
+@enduml

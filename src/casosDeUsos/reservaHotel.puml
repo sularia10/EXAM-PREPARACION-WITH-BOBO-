@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor Client
+actor AdminHotel as "Administrador d'Hotel"
+actor Sistema as "Sistema"
+
+rectangle "Sistema de Reserves d'Hotel" {
+
+  (Cercar hotels) as Cercar
+  (Fer una reserva) as Reservar
+  (Cancel·lar una reserva) as Cancelar
+  (Gestionar reserves) as Gestionar
+  (Afegir hotel) as Afegir
+  (Enviar recordatori de reserva) as Recordatori
+
+  Client --> Cercar
+  Client --> Reservar
+  Client --> Cancelar
+
+  AdminHotel --> Gestionar
+  AdminHotel --> Afegir
+
+  Sistema --> Recordatori
+  Recordatori --> Reservar : <<include>>
+}
+
+@enduml

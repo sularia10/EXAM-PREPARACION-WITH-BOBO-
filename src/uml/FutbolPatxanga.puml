@@ -1,0 +1,40 @@
+@startuml
+
+' Classe Jugador
+class Jugador {
+  - nom: String
+  - posicio: String
+  - gols: int
+  - assistencies: int
+
+  + marcarGol(): void
+  + ferAssistencia(): void
+}
+
+' Classe Entrenador
+class Entrenador {
+  - nom: String
+  - edat: int
+  - experienciaAnys: int
+
+  + getNom(): String
+}
+
+' Classe Equip
+class Equip {
+  - nomEquip: String
+  - puntsEquip: int
+  - entrenador: Entrenador
+  - jugadors: List<Jugador>
+
+  + afegirJugador(j: Jugador): void
+  + sumarPunts(punts: int): void
+}
+
+' Relacions
+Jugador --> Equip : juga a
+Equip --> Entrenador : té com a
+Equip --> "0..*" Jugador : compta amb
+
+@enduml
+
